@@ -1,0 +1,11 @@
+.venv/
+__pycache__/
+.pytest_cache/
+.ruff_cache/
+*.pyc
+.streamlit/
+models/
+data/raw/
+src/ai_detector/app.py
+docs/LEARNING.md
+docs/IMPROVEMENTS.md
