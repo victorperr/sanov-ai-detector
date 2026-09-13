@@ -17,5 +17,13 @@ def test_unmarked_sequence_is_not_systematically_green():
     assert result.green_rate < 0.4
 
 
+def test_generate_toy_and_analyze_work_for_positioned_contexts():
+    detector = GreenlistWatermarker(64, gamma=0.25)
+    tokens = detector.generate_toy(200, seed=7, watermarked=True)
+    result = detector.analyze(tokens)
+    assert result.token_count == len(tokens) - 1
+    assert result.green_rate > 0.5
+
+
 def test_watermark_exponent_zero_at_null_rate():
     assert watermark_ld_exponent(0.25, 0.25) == 0

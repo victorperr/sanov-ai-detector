@@ -1,21 +1,24 @@
 # AI Text Detector: Types, Sanov, and Watermarks
 
-A project for detecting AI-generated text with empirical types and large deviations.
+A project for **detecting AI-generated text** with empirical types and large deviations.
 
 ## Research question
 
 Given a text represented as a sequence of discrete events (word n-grams, token IDs, or token probability bins), test:
 
-- **H0 (human):** the empirical type is sampled around a human reference distribution `P`.
-- **H1 (AI):** the empirical type is sampled around an LLM reference distribution `Q`.
+- **$H_0$ (human):** the empirical type is sampled around a human reference distribution $`P`$.
+- **$H_1$ (AI):** the empirical type is sampled around an LLM reference distribution $`Q`$.
 
-Notations :
-- `R_n` = type of the sequence (also called empirical distribution)
-- For 2 distributions p and q, `D(p || q)` is called relative entropy (sometimes called **Kullback-Leibler divergence**). It measures of how much an approximating probability distribution q is different from a true probability distribution p.
+> [!NOTE]
+> $`R_n`$ = type of the sequence (also called empirical distribution)
 
-We estimate `R_n` from the sequence and compute the difference of relative entropy `D(R_n || P) - D(R_n || Q)` (called score) and compare it to a threshold.
+> For 2 distributions $p$ and $q$, $`D(p || q)`$ is called relative entropy (sometimes called **Kullback-Leibler divergence**). It measures of how much an approximating probability distribution $q$ is different from a true probability distribution $p$.
 
-For a rejection region `E`, **Sanov's theorem** gives `P(R_n in E) ~= exp(-n inf_{R in E} D(R || P))`; the implementation reports this exponent as an interpretable upper-tail rarity estimate.
+We estimate $`R_n`$ from the sequence and compute the difference of relative entropy $`D(R_n || P) - D(R_n || Q)`$ (called score) and compare it to a threshold.
+
+For a rejection region `E`, **Sanov's theorem** gives
+$$P(R_n \in E) ~= \exp(-n \times inf_{R \in E} D(R || P))$$
+The implementation reports this exponent as an interpretable upper-tail rarity estimate.
 
 ## Quick start
 
